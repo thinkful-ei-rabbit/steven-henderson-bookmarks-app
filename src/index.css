@@ -1,0 +1,27 @@
+/* Main Format */
+body {
+    text-align: center;
+}
+
+#top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#library {
+    border-style: solid;
+    border-width: 10px 5px 0px 5px;
+    margin-top: 2.5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 70%;
+}
+
+#footer {
+    border-style: solid;
+    border-width: 10px, 5px, 0px, 5px;
+    margin-left: 17.5%;
+    margin-right: 17.5%;
+    margin-bottom: 0%;
+}
