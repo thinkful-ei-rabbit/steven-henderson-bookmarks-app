@@ -1,3 +1,5 @@
+import library from './library.js';
+
 //TOP STAR FILTER SETTER
 //
 // function starFilterHover() {
@@ -28,82 +30,73 @@ function starRaterClick() {
 // starFilterHover();
 // starFilterClick();
 
-//Generator Functions
-//Generates a CONDENSED Bookmark
+/* GENERATOR FUNCTIONS */
+//All Generators Combined
+function masterGenerator() {
+    console.log('now i am the master');
+    let masterLog = "";
+    for (let i = 0; i < library.libraryItems.length; i++) {
+        let quarry = library.libraryItems[i];
+        if(quarry.expanded === false) {
+            masterLog += generateCondensed(quarry);
+        } else if(quarry.expanded === true) {
+            masterLog += generateExpanded(quarry);
+        };
+    };
+    return masterLog;
+};
 
 
 //EXPANDS a CONDENSED Bookmark
-function generateCondensed() {
-   return `
-        <h3>this is it</h3>
-        <button id='expand' class='bookmark-button' type='submit'>Expand</button>
+function generateCondensed(hunted) {
+    return `
+        <div id='${hunted.id}' class='condensed bookmark'>
+            <div class='bookmark-left'><h3>${hunted.name}</h3></div>
+            <div class='bookmark-right'><button class='expand' class='bookmark-button' type='submit'>Expand</button></div>
+        </div>
     `
 };
 
 //CONDENSES an EXPANDED Bookmark
-function generateExpanded() {
+function generateExpanded(hunted) {
     return `
-         <div class='bookmark-left'>
-             <h3>this is it</h3>
-             <hr>
-             <h4>chai tea bing bang wahoo plumbing all day swanging all night ladies love me and dogs wanna be me knowWhatIMean() UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT B A START</h4>
-             <hr>
-             <h5>yo here's the URL</h5>
-         </div>
-         <div class='bookmark-right'>
-             <button id='edit' class='bookmark-button' type='submit'>Edit</button>
-             <button id='remove' class='bookmark-button' type='submit'>Remove</button>
-             <button id='condense' class='bookmark-button' type='submit'>Condense</button>
-         </div>
-     `
+        <div id=${hunted.id} class='expanded bookmark'>
+            <div class='bookmark-left'>
+                <h3>${hunted.name}</h3>
+                <hr>
+                <h4>${hunted.description}</h4>
+                <hr>
+                <h5>${hunted.url}</h5>
+            </div>
+            <div class='bookmark-right'>
+                <button class='condense' class='bookmark-button' type='submit'>Condense</button>    
+                <button class='edit' class='bookmark-button' type='submit'>Edit</button>
+                <button class='remove' class='bookmark-button' type='submit'>Remove</button>
+            </div>
+        </div>
+    `
  };
 
 //generateBookmark
 
 
-//Render Functions
+/* RENDER FUNCTIONS */
 //Renders the Library
-function renderLibrary(action, tag) {
-    console.log(action);
-    console.log(tag);
-    //add loop to find ID
-    //let element = document.getElementById()
-    // if(value==='expand') {
-    //     let spawn = generateExpanded();
-    //     $('#a').html(spawn);
-    //     condenser();
-    // } if(value==='condense') {
-    //     let spawn = generateCondensed();
-    //     $('#a').html(spawn);
-    //     expander();
-    // } if(value==='expand') {
-    //     let spawn = generateExpanded();
-    //     $('#b').html(spawn);
-    //     condenser();
-    // } if(value==='condense') {
-    //     let spawn = generateCondensed();
-    //     $('#b').html(spawn);
-    //     expander();
-    // } if(value==='expand') {
-    //     let spawn = generateExpanded();
-    //     $('#c').html(spawn);
-    //     condenser();
-    // } if(value==='condense') {
-    //     let spawn = generateCondensed();
-    //     $('#c').html(spawn);
-    //     expander();
-    // } else {
-    //     console.log('ohhh fuggg :DD')
-    // }   
+function renderLibrary() {
+    console.log('intial render GO');
+    let spawn = masterGenerator()
+    $('#bookmark-library').html(spawn); 
     console.log('I rendered this :) ')
+    expander();
+    condenser();
 };
 
 //Places a Bookmark in the library
 
 
-
-//Opens the Creator menu
-function createBookmark() {
+/* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
+//Opens the Creator Menu
+function openCreator() {
     $('#create').on('click', function() {
         console.log('Creator Activate!');
         document.getElementById('top').classList.add('hidden');
@@ -112,38 +105,41 @@ function createBookmark() {
     });
 };
 
-
-/* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
-//Clicking a Bookmark will expand it
+//Clicking an EXPAND Button will EXPAND the Bookmark
 function expander() {
-    $('#expand').on('click', function(event) {
+    $('.expand').on('click', function(event) {
         event.preventDefault();
         console.log("I'm EXPANDING");
         let expanderParent = this.closest('.bookmark');
-        console.log(expanderParent);
-        expanderParent.classList.add('expanded');
-        expanderParent.classList.remove('condensed');
-        let expanderTag = $(this).closest('.bookmark').attr('id');
-        console.log(expanderTag);
-        renderLibrary('expand', expanderTag);
+        let expanderTag = $(expanderParent).attr('id');
+        for (let i = 0; i < library.libraryItems.length; i++) {
+            let quarry = library.libraryItems[i];
+            if (quarry.id === expanderTag) {
+                quarry.expanded = true;
+            };
+        };
+    renderLibrary();
     });
 };
 
-//Clicking a Condense Button will condense the Bookmark
+//Clicking a CONDENSE Button will CONDENSE the Bookmark
 function condenser() {
-    $('#condense').on('click', function(event) {
+    $('.condense').on('click', function(event) {
         event.preventDefault();
         console.log("I'm CONDENSING");
         let condenserParent = this.closest('.bookmark');
-        condenserParent.classList.add('condensed');
-        condenserParent.classList.remove('expanded');
-        let condenserTag = $(this).closest('.bookmark').attr('id');
-        console.log(condenserTag);
-        renderLibrary('condense', condenserTag);
+        let condenserTag = $(condenserParent).attr('id');
+        for (let i = 0; i < library.libraryItems.length; i++) {
+            let quarry = library.libraryItems[i];
+            if (quarry.id === condenserTag) {
+                quarry.expanded = false;
+            };
+        };
+    renderLibrary();
     });
 };
 
-//Build button creates a new library item
+//BUILD Button creates a new Library Item
 function buildCreator() {
     $('#build').on('click', function(event) {
         event.preventDefault();
@@ -159,7 +155,7 @@ function buildCreator() {
     });
 };
 
-//Cancel button goes back to main without changing anything
+//CANCEL Button goes back to Main Page without changing anything
 function cancelCreator() {
     $('#cancel').on('click', function(event) {
         event.preventDefault();
@@ -176,11 +172,9 @@ function cancelCreator() {
 };
 
 function main() {
-    //renderLibrary();
-    createBookmark();
+    renderLibrary();
+    openCreator();
     starFilterClick();
-    expander();
-    condenser();
     starRaterClick();
     buildCreator();
     cancelCreator();

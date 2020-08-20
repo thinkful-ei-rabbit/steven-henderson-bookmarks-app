@@ -63,35 +63,30 @@ body {
 }
 
 .condensed {
-    border-style: groove;
-    border-width: .25rem 0;
-    margin-left: -2rem;
-}
-
-.condensed > p {
-    margin-left: 2rem;
+    box-sizing: content-box;
+    border-style: solid;
+    border-width: .25em 0;
+    margin-left: -32px;
+    height: 80px;
+    width: 790px;
 }
 
 .expanded {
-    height: 14rem;
-    border-style: groove;
-    border-width: .25rem 0;
-    margin-left: -2rem;
+    height: 16em;
+    border-style: solid;
+    border-width: .25em 0;
+    margin-left: -32px;
 }
-
-/*maybe unnecessary */
-/* .expanded > p {
-    margin-left: 2rem;
-} */
 
 .bookmark-left {
     display: flex;
     flex-direction: column;
-    margin-top: -.5rem;
-    margin-bottom: 1rem;
-    margin-left: 2rem;
-    padding-top: 0rem;
-    padding-bottom: 1rem;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    margin-left: 12px;
+    padding-top: 0px;
+    padding-bottom: 0;
+    width: 200px;
 }
 
 h4 {
@@ -102,11 +97,12 @@ h4 {
 .bookmark-right{
     display: flex;
     flex-direction: column;   
-    margin-left: 7rem;
-    margin-right: 3rem;
-    padding: 1.5rem 0 1.5rem 3rem;
+    margin-left: 500px;
+    margin-right: 3px;
+    padding: 30px 0 0 45px;
     border-style: solid;
     border-width: 0 0 0 5px;
+    width: 40%;
     justify-content: space-between;
 }
 
