@@ -1,6 +1,8 @@
 Bookmark App
 
 -Wireframe it OKAY
+-Bookmarks need id:, title:, description:, rating:, expanded:, (maybe more) OKAY
+
 -User creates bookmarks
 -Can give bookmarks a description
 -Give bookmarks star ratings with a drop down bar
@@ -9,7 +11,6 @@ Bookmark App
 -Use expanded:true / false (toggle button)
 -Thinkful/steven/bookmarks api
 -Be able to condense and expand listed bookmarks
--Bookmarks need id:, title:, description:, rating:, expanded:, (maybe more)
 -API Server and Store can have different keys
 -Create local Store first, then modify it to include API functionality
 -Use HTML Templates to render list (can use base HTML for sketching)

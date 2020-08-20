@@ -9,20 +9,49 @@
 </head>
 <body>
     <header>
-        <h1>The Bookmark Libray</h1>
+        <h1>The Bookmark Library</h1>
     </header>
-    <div id='top'>
-        <button id='creator' type='submit'>Create</button>
+    <div id='top' class='top'>
+        <button id='create' type='submit'>Create</button>
         <div id='top-stars'>
-            <img id='top-star-1' src='../stars/star-hollow.png'></span>
-            <img id='top-star-2' src='../stars/star-hollow.png'></span>
-            <img id='top-star-3' src='../stars/star.png'></span>
-            <img id='top-star-4' src='../stars/star.png'></span>
-            <img id='top-star-5' src='../stars/star.png'></span>
+            <img id='top-star-1' class='star-filter' src='../stars/star-hollow.png'></span>
+            <img id='top-star-2' class='star-filter' src='../stars/star-hollow.png'></span>
+            <img id='top-star-3' class='star-filter' src='../stars/star.png'></span>
+            <img id='top-star-4' class='star-filter' src='../stars/star.png'></span>
+            <img id='top-star-5' class='star-filter' src='../stars/star.png'></span>
         </div>
     </div>
     <article id='library'>
+        <div id='creator' class='hidden'>
+            <h2>Create a Bookmark</h2>
+            <form id='creator-entries'>
+                <label for='creator-url-entry'>Enter a Url</label>
+                <input type='text' name='creator-url-entry' placeholder='e.g., whitehouse.gov'>
+                <br><br>
+                <label for='creator-description-entry'>Enter a Description</label>
+                <br><br>
+                <textarea type='message' name='creator-description-entry' rows='10' cols='60'
+                  placeholder='The official website of the United States Whitehouse'></textarea>
+                  <br><br>
+                  <img id='creator-star-1' class='star-rater' src='../stars/small-star-hollow.png'></span>
+                  <img id='creator-star-2' class='star-rater' src='../stars/small-star-hollow.png'></span>
+                  <img id='creator-star-3' class='star-rater' src='../stars/small-star.png'></span>
+                  <img id='creator-star-4' class='star-rater' src='../stars/small-star.png'></span>
+                  <img id='creator-star-5' class='star-rater' src='../stars/small-star.png'></span>
+                  <br><br>
+                  <div id='creator-buttons'>
+                    <button id='build' type='submit'>Book it!</button>
+                    <div class='divider'></div>
+                    <button id='cancel' type='submit'>Cancel it!</button>
+                  </div>
+
+            </form>
+
+            </div>
         <p>this is it</p>
+        <hr>
+        <p>this too, is it</p>
+        <hr>
     </article>
     <footer id='footer'>
         <p>by steven henderson</p>
