@@ -7,10 +7,12 @@ Published **/**/****
 Last Update **/**/****
 
 A app that allows users to:
-(maintain a list of bookmarks)
-(create new bookmarks)
+- Maintain a list of bookmarks
+- Create new bookmarks
+- Expand and condense a bookmark's information
+
+- Edit bookmark descriptions
 (delete old bookmarks)
-(edit bookmark descriptions)
+
 (give bookmarks star scores)
 (filter by star scores)
-(expand and condense bookmark's information)

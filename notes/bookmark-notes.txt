@@ -2,23 +2,25 @@ Bookmark App
 
 -Wireframe it OKAY
 -Bookmarks need id:, title:, description:, rating:, expanded:, (maybe more) OKAY
+-User creates bookmarks OKAY
+-Can give bookmarks a description OKAY
+-Be able to condense and expand listed bookmarks OKAY
+-name attribute!!! OKAY
 
--User creates bookmarks
--Can give bookmarks a description
+-Add ability to remove Bookmarks
+
 -Give bookmarks star ratings with a drop down bar
 -Can filter list by star rating
 -Visit button to go to site
 -Use expanded:true / false (toggle button)
 -Thinkful/steven/bookmarks api
--Be able to condense and expand listed bookmarks
 -API Server and Store can have different keys
 -Create local Store first, then modify it to include API functionality
 -Use HTML Templates to render list (can use base HTML for sketching)
 -Have forms to input information
 -Use .val() and then figure out to use JQuery to simplify (.serializeArray())
 -Look up fromData() on developer.mozilla
--name attribute!!!
--Add ability to remove Bookmarks
+
 -------------------------------
 -Wireframe all neccesary bits
 -Pseudocode all requirements
