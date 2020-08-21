@@ -9,29 +9,15 @@ import library from './library.js';
 //     });
 // };
 
-function starFilterClick() {
-    $('.star-filter').on('click', function(event) {
-        event.preventDefault();
-        //document.getElementById('top-stars').classList.remove('fa_fa-star');
-        //document.getElementById('top-stars').classList.add('fa_fa-star_checked');
-        console.log('You clicked a FILTER star');
-    });
-};
-
-function starRaterClick() {
-    $('.star-rater').on('click', function(event) {
-        event.preventDefault();
-        //document.getElementById('top-stars').classList.remove('fa_fa-star');
-        //document.getElementById('top-stars').classList.add('fa_fa-star_checked');
-        console.log('You clicked a RATER star');
-    });
-};
-
 // starFilterHover();
-// starFilterClick();
+
 
 /* GENERATOR FUNCTIONS */
-//All Generators Combined
+//Generates the Star Filter
+
+//Generates the Creator Menu
+
+//Condensed and Expanded Generators Combined
 function masterGenerator() {
     console.log('now i am the master');
     let masterLog = "";
@@ -51,8 +37,8 @@ function masterGenerator() {
 function generateCondensed(hunted) {
     return `
         <div id='${hunted.id}' class='condensed bookmark'>
-            <div class='bookmark-left'><h3>${hunted.name}</h3></div>
-            <div class='bookmark-right'><button class='expand' class='bookmark-button' type='submit'>Expand</button></div>
+            <span class='bookmark-left'><h3>${hunted.name}</h3></span>
+            <span class='bookmark-right'><button class='expand' class='bookmark-button' type='submit'>Expand</button></span>
         </div>
     `
 };
@@ -61,17 +47,16 @@ function generateCondensed(hunted) {
 function generateExpanded(hunted) {
     return `
         <div id=${hunted.id} class='expanded bookmark'>
-            <div class='bookmark-left'>
-                <h3>${hunted.name}</h3>
-                <hr>
-                <h4>${hunted.description}</h4>
-                <hr>
-                <h5>${hunted.url}</h5>
+            <div class='bookmark-left-big'>
+                <span class='bookmark-top-left'><h3>${hunted.name}</h3></span>
+                <span class='bookmark-middle-left'><h4>${hunted.description}</h4></span>
+                <span class='bookmark-bottom-left'><h5>${hunted.url}</h5></span>
             </div>
-            <div class='bookmark-right'>
-                <button class='condense' class='bookmark-button' type='submit'>Condense</button>    
-                <button class='edit' class='bookmark-button' type='submit'>Edit</button>
-                <button class='remove' class='bookmark-button' type='submit'>Remove</button>
+
+            <div class='bookmark-right-big'>
+                <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
+                <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
+                <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
             </div>
         </div>
     `
@@ -95,6 +80,25 @@ function renderLibrary() {
 
 
 /* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
+//Allows User to set the Star Filter
+function starFilterClick() {
+    $('.star-filter').on('click', function(event) {
+        event.preventDefault();
+        if (this.classList == 'star-filter dead-star') {
+            this.classList.remove('dead-star');
+            this.classList.add('star-filter','live-star');
+            let newStar = '../stars/star.png';
+            $(this).attr('src', newStar);
+        } else if (this.classList == 'star-filter live-star') {
+            this.classList.remove('live-star');
+            this.classList.add('star-filter','dead-star');
+            let newStar = '../stars/star-hollow.png';
+            $(this).attr('src', newStar);
+        }
+        console.log('You clicked a FILTER star');
+    });
+};
+
 //Opens the Creator Menu
 function openCreator() {
     $('#create').on('click', function() {
@@ -102,6 +106,25 @@ function openCreator() {
         document.getElementById('top').classList.add('hidden');
         document.getElementById('top').classList.remove('top');
         document.getElementById('creator').classList.remove('hidden');
+    });
+};
+
+//Allows User to set a Bookmark's Star Rating
+function starRaterClick() {
+    $('.star-rater').on('click', function(event) {
+        event.preventDefault();
+        if (this.classList == 'star-rater dead-star') {
+            this.classList.remove('dead-star');
+            this.classList.add('star-rater','live-star');
+            let newStar = '../stars/small-star.png';
+            $(this).attr('src', newStar);
+        } else if (this.classList == 'star-rater live-star') {
+            this.classList.remove('live-star');
+            this.classList.add('star-rater','dead-star');
+            let newStar = '../stars/small-star-hollow.png';
+            $(this).attr('src', newStar);
+        }
+        console.log('You clicked a RATER star');
     });
 };
 
