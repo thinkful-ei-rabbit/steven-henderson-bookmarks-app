@@ -1,4 +1,5 @@
 import library from './library.js';
+//import cuid from 'cuid';
 
 /* GENERATOR FUNCTIONS */
 //Generates the Star Filter
@@ -186,6 +187,15 @@ function condenser() {
     });
 };
 
+//Clicking a REMOVE Button will REMOVE the Bookmark
+function remover() {
+    $('.remove').on('click', function(event) {
+        event.preventDefault();
+        let removerParent = this.closest('.bookmark');
+
+    })
+}
+
 /* FILTER FUNCTIONS */
 //Adds Bookmarks to the Filter
 //Grow Filter
@@ -212,6 +222,9 @@ function condenser() {
 
     // }
 
+// console.log(cuid() );
+// console.log(cuid() );
+// console.log(cuid() );
 
 function main() {
     renderLibrary();
