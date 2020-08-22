@@ -1,17 +1,5 @@
 import library from './library.js';
 
-//TOP STAR FILTER SETTER
-//
-// function starFilterHover() {
-//     $('#top-stars').hover(function(event) {
-//         document.getElementById('top-stars').classList.add('checked');
-//         console.log('hover good');
-//     });
-// };
-
-// starFilterHover();
-
-
 /* GENERATOR FUNCTIONS */
 //Generates the Star Filter
 
@@ -29,9 +17,7 @@ function masterGenerator() {
         };
     };
     return masterLog;
-    
 };
-
 
 //EXPANDS a CONDENSED Bookmark
 function generateCondensed(quarry) {
@@ -51,7 +37,10 @@ function generateExpanded(quarry) {
     return `
         <div id=${quarry.id} class='expanded bookmark'>
             <div class='bookmark-left-big'>
-                <span class='bookmark-top-left'><h3 contenteditable= true>${quarry.title}</h3></span>
+                <div class='bookmark-top'>
+                    <span class='bookmark-top-left'><h3 contenteditable= true>${quarry.title}</h3></span>
+                    <span class='expanded-star-rating'><img src='${library.ratingSystem[quarry.rating]}'</span>
+                </div>
                 <span class='bookmark-middle-left'><h4 contenteditable= true>${quarry.description}</h4></span>
                 <span class='bookmark-bottom-left'><h5 contenteditable= true>${quarry.url}</h5></span>
             </div>
@@ -65,10 +54,8 @@ function generateExpanded(quarry) {
     `
  };
 
-//generateBookmark
+/* RENDER FUNCTION */
 
-
-/* RENDER FUNCTIONS */
 //Renders the Library
 function renderLibrary() {
     let spawn = masterGenerator()
@@ -76,9 +63,6 @@ function renderLibrary() {
     expander();
     condenser();
 };
-
-//Places a Bookmark in the library
-
 
 /* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
 
@@ -201,6 +185,13 @@ function condenser() {
     renderLibrary();
     });
 };
+
+/* FILTER FUNCTIONS */
+//Adds Bookmarks to the Filter
+//Grow Filter
+
+//Removes Bookmarks from the Filter
+//Shrink Filter
 
     //NON ESSENTIAL
 
