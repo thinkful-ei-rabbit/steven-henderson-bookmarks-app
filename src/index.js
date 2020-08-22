@@ -1,5 +1,4 @@
 import library from './library.js';
-//import cuid from 'cuid';
 
 /* GENERATOR FUNCTIONS */
 //Generates the Star Filter
@@ -127,6 +126,7 @@ function starFilterClick() {
             library.starFilterRemover(starPower);
         }
         console.log('You clicked a FILTER star');
+        console.log(library.libraryItems)
     });
 };
 
@@ -221,10 +221,6 @@ function remover() {
     // function cancelEditor() {
 
     // }
-
-// console.log(cuid() );
-// console.log(cuid() );
-// console.log(cuid() );
 
 function main() {
     renderLibrary();

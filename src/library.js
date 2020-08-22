@@ -1,5 +1,4 @@
 import main from './index.js';
-import cuid from '../node_modules/cuid';
 
 let libraryItems = [
     {
@@ -44,7 +43,7 @@ const ratingSystem = {
 function addLibraryItem(creation) {
     let cereal = $(creation).serializeArray();
     let newBookmark = {
-        id: `(cuid())`,
+        id: `${(libraryItems.length) + 1}`,
         title: `${cereal[0].value}`,
         description: `${cereal[2].value}`,
         url: `${cereal[1].value}`,
