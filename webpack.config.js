@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+//import HtmlWebpackPlugin from 'html-webpack-plugin';
 module.exports = {
   entry: './src/index.js',
   output: {
