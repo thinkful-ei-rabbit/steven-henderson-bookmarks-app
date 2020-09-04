@@ -178,93 +178,54 @@ function cancelCreator() {
     });
 };
 
-//Allows User to set the Star Filter
-function starFilterClick() {
-    $('.star-filter').on('click', function(event) {
-        event.preventDefault();
-        console.log($(this).attr('id'));
-        let starPower = $(this).attr('id');
-        if (this.classList == 'star-filter dead-star') {
-            this.classList.remove('dead-star');
-            this.classList.add('star-filter','live-star');
-            let newStar = '../stars/star.png';
-            library.starFilterAdder(starPower);
-            $(this).attr('src', newStar);
-        } else if (this.classList == 'star-filter live-star') {
-            this.classList.remove('live-star');
-            this.classList.add('star-filter','dead-star');
-            let newStar = '../stars/star-hollow.png';
-            $(this).attr('src', newStar);
-            library.starFilterRemover(starPower);
-        }
-        console.log('You clicked a FILTER star');
-        console.log(library.libraryItems)
-    });
+function generateMore() {
+    return `<div id='creator'>
+    <h2>Create a Bookmark</h2>
+    <form id='creator-entry'>
+        <label for='title'>Enter a Name</label>
+        <input type='text' name='title' placeholder='the whitehouse' required>
+        <br><br>
+        <label for='url'>Enter a URL</label>
+        <input type='text' name='url' placeholder='e.g., whitehouse.gov' required>
+        <br><br>
+        <label for='description'>Enter a Description</label>
+        <br><br>
+        <textarea type='message' name='description' rows='10' cols='60' maxlength="100"
+          placeholder='The official website of the United States Whitehouse' required></textarea>
+          <br><br>
+          <img id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-2' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-3' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-4' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-5' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <br><br>
+          <div id='creator-buttons'>
+            <button id='build' type='submit'>Book it!</button>
+            <div class='divider'></div>
+            <button id='cancel' type='submit'>Cancel it!</button>
+          </div>
+
+    </form>
+
+    </div>
+    <article id='bookmark-library'>
+
+    </article>`
 };
 
-//Allows User to set a Bookmark's Star Rating
-function starRaterClick() {
-    $('.star-rater').on('click', function(event) {
-        event.preventDefault();
-        console.log($(this).attr('id'));
-        let starPower = $(this).attr('id');
-        if (this.classList == 'star-rater dead-star') {
-            this.classList.remove('dead-star');
-            this.classList.add('star-rater','live-star');
-            let newStar = '../stars/small-star.png';
-            library.starRaterAdder(starPower);
-            $(this).attr('src', newStar);
-        } else if (this.classList == 'star-rater live-star') {
-            this.classList.remove('live-star');
-            this.classList.add('star-rater','dead-star');
-            let newStar = '../stars/small-star-hollow.png';
-            $(this).attr('src', newStar);
-            library.starRaterRemover(starPower);
-        }
-        console.log('You clicked a RATER star');
-    });
-};
 
-//Clicking an EXPAND Button will EXPAND the Bookmark
-function expander() {
-    $('.expand').on('click', function(event) {
-        event.preventDefault();
-        console.log("I'm EXPANDING");
-        let expanderParent = this.closest('.bookmark');
-        let expanderTag = $(expanderParent).attr('id');
-        for (let i = 0; i < library.libraryItems.length; i++) {
-            let quarry = library.libraryItems[i];
-            if (quarry.id === expanderTag) {
-                quarry.expanded = true;
-            };
-        };
-    renderLibrary();
-    });
-};
 
-//Clicking a CONDENSE Button will CONDENSE the Bookmark
-function condenser() {
-    $('.condense').on('click', function(event) {
-        event.preventDefault();
-        console.log("I'm CONDENSING");
-        let condenserParent = this.closest('.bookmark');
-        let condenserTag = $(condenserParent).attr('id');
-        for (let i = 0; i < library.libraryItems.length; i++) {
-            let quarry = library.libraryItems[i];
-            if (quarry.id === condenserTag) {
-                quarry.expanded = false;
-            };
-        };
-    renderLibrary();
-    });
-};
+function main() {
+  console.log('DOM is loaded');
 
-//Clicking a REMOVE Button will REMOVE the Bookmark
-function remover() {
-    $('.remove').on('click', function(event) {
+  //const startMsg = $('<p>Webpack is working!</p>');
+  $('#root').append(generateTop());
+  $('#create').click(function(event){
+      event.preventDefault();
+    $('#library').append(generateMore());
+    $('#creator-entry').submit(function(event){
         event.preventDefault();
-        let removerParent = this.closest('.bookmark');
-
+        debugger;
     })
 }
 
@@ -304,11 +265,6 @@ function main() {
     buildCreator();
     cancelCreator();
     //editor();
-};
-
-export default {
-    buildCreator,
-    renderLibrary
 };
 
 $(main);
