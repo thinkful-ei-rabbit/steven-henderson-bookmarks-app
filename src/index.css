@@ -32,7 +32,7 @@ header {
     border-style: solid;
     border-width: 6px 4px 0px 4px;
     border-color: black;
-    margin-top: 2.5%;
+    margin-top: 5%;
     margin-left: 20%;
     margin-right: 20%;
     padding-bottom: 60%;
@@ -62,7 +62,7 @@ header {
     display: none;
 }
 
-/* Top Create Button + Star Filter Formatting */
+/* Top Create Button + Star Filter Formatting + Fetch Button */
 #create {
     width: 7.5rem;
     height: 3rem;
@@ -79,6 +79,11 @@ header {
 #top-star-1 {
     padding-left: 5rem;
 }
+
+#fetch {
+    
+}
+
 
 /* Library Item Formatting */
 .bookmark {
