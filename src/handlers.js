@@ -3,34 +3,52 @@ import starFilter from './starFilter';
 import starRater from './starRater';
 import renders from './renders';
 import library from './library';
+import generators from './generators';
 
 /* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
 //Opens the Creator Menu
 function openCreator() {
   $('#create').on('click', function() {
-      document.getElementById('top').classList.add('hidden');
-      document.getElementById('top').classList.remove('top');
-      document.getElementById('creator').classList.remove('hidden');
-      buildCreator();
-      cancelCreator();
+      //document.getElementById('creator').classList.remove('hidden');
+      library.store.state = 'create';
+      renders.updateUI();
   });
 };
 
 //BUILD Button creates a new Library Item
 function buildCreator() {
-  $('#build').on('click', function(event) {
-      event.preventDefault();
-      document.getElementById('creator').classList.add('hidden');
-      document.getElementById('top').classList.add('top');
-      document.getElementById('top').classList.remove('hidden');
-      //Generate Library Item
-      //console.log(this.closest('#creator-entry'));
-      let creation = this.closest('#creator-entry');
-      //library.addLibraryItem(creation);
-      //Update API
-      document.getElementById('creator-entry').reset();
-  });
+  document.getElementById('creator').classList.add('hidden');
+  $('#bookmark-library').html('');
+  document.getElementById('top').classList.add('top');
+  document.getElementById('top').classList.remove('hidden');
+  library.addLibraryItem();
+  //Update API
+  document.getElementById('creator-entry').reset();
+  starRater.starRaterDefault();
+  library.store.passing = false;
 };
+
+//But first it must pass validation
+//Handler with Single Focus
+function validateCreator() {
+  $('#build').on('click', validator);
+};
+
+function validator(event) {
+  event.preventDefault();
+  const x = $('#title').val();
+  const y = $('#url').val();
+  if (x === "" && y === "") {
+    alert("Both the Title and the URL must be filled out");
+  } else if (x === "") {
+    alert("Title must be filled out");
+  } else if (y === "") {
+    alert("URL must be filled out")
+  } else {
+    buildCreator()
+  };
+}
+
 
 //CANCEL Button goes back to Main Page without changing anything
 function cancelCreator() {
@@ -39,8 +57,8 @@ function cancelCreator() {
       document.getElementById('creator').classList.add('hidden');
       document.getElementById('top').classList.add('top');
       document.getElementById('top').classList.remove('hidden');
-      //Update API
       document.getElementById('creator-entry').reset();
+      starRater.starRaterDefault();
   });
 };
 
@@ -62,6 +80,7 @@ function starFilterClick() {
           $(this).attr('src', newStar);
           starFilter.starFilterRemover(starPower);
       }
+      renders.renderLibrary();
   });
 };
 
@@ -123,13 +142,14 @@ function remover() {
   $('.remove').on('click', function(event) {
       event.preventDefault();
       let removerParent = this.closest('.bookmark');
-
   })
 }
 
 export default {
   starFilterClick,
   openCreator,
+  validateCreator,
+  cancelCreator,
   starRaterClick,
   expander,
   condenser

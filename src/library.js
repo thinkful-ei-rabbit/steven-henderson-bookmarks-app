@@ -1,5 +1,6 @@
 import $ from 'jquery';
-
+import renders from './renders';
+ ///MAKE STORE ITS OWN THING
 let store = {
     libraryItems: [
         {
@@ -27,7 +28,17 @@ let store = {
             expanded: false,
         }
     ],
-    filter: null
+    filter: 0,
+    rating: 0,
+    state: 'welcome',
+    // ratingSystem: {
+    //     0: '../stars/zero-of-five.png',
+    //     1: '../stars/one-of-five.png',
+    //     2: '../stars/two-of-five.png',
+    //     3: '../stars/three-of-five.png',
+    //     4: '../stars/four-of-five.png',
+    //     5: '../stars/five-of-five.png'
+    // }
 };
 
 const ratingSystem = {
@@ -39,22 +50,18 @@ const ratingSystem = {
     5: '../stars/five-of-five.png'
 };
 
-function addLibraryItem(creation) {
-    let cereal = $(creation).serializeArray();
+function addLibraryItem() {
     let newBookmark = {
-        id: `${(libraryItems.length) + 1}`,
-        title: `${cereal[0].value}`,
-        description: `${cereal[2].value}`,
-        url: `${cereal[1].value}`,
-        rating: 5,
+        id: `${(store.libraryItems.length) + 1}`,
+        title: $('#title').val(),
+        description: $('#description').val(),
+        url: $('#url').val(),
+        rating: store.rating,
         expanded: false,
     }
     console.log(newBookmark);
-    libraryItems.push(newBookmark);
-    console.log(libraryItems);
-    console.log(libraryItems[2]);
-    console.log(libraryItems[3]);
-    main.renderLibrary();
+    store.libraryItems.push(newBookmark);
+    renders.renderLibrary();
 };
 
     export default {

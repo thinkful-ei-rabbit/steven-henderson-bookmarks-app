@@ -3,42 +3,44 @@ import library from './library';
 
 //GENERATOR FUNCTIONS
 //Generates the top section of the page
+//Has been updated to utilize Semantic HTML
 function generateTop() {
   return `
   <header>
     <h1>The Bookmark Library</h1>
   </header>
-    <div id='top' class='top'>
-      <button id='create' type='submit'>Create</button>
-      <div id='top-stars'>
-        <label><img id='top-star-1' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-        <label><img id='top-star-2' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-        <label><img id='top-star-3' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-        <label><img id='top-star-4' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-        <label><img id='top-star-5' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      </div>
+  <nav id='top' class='top'>
+    <button id='create' type='submit'>Create</button>
+    <div id='top-stars'>
+      <label><img id='top-star-1' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <label><img id='top-star-2' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <label><img id='top-star-3' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <label><img id='top-star-4' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <label><img id='top-star-5' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
     </div>
-  <article id='bookmark-library'>
-
-  </article>
+  </nav>
+  <section id='bookmark-library'>
+  </section>
+  <section id='library'>
+  </section>
   `
 };
 
 //Generates the Creator screen
 function generateCreator() {
   return `
-  <div id='creator' class='hidden'>
+  <div id='creator'>
     <h2>Create a Bookmark</h2>
       <form id='creator-entry'>
         <label for='title'>Enter a Name</label>
-          <input id='title' type='text' name='title' placeholder='the whitehouse' required>
+          <input id='title' type='text' name='title' placeholder='the whitehouse' isRequired>
           <br><br>
         <label for='url'>Enter a URL</label>
-          <input type='text' name='url' placeholder='e.g., whitehouse.gov' required>
+          <input id='url' type='text' name='url' placeholder='e.g., whitehouse.gov' isRequired>
           <br><br>
         <label for='description'>Enter a Description</label>
           <br><br>
-        <textarea type='message' name='description' rows='10' cols='60' maxlength="100"
+        <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
           placeholder='The official website of the United States Whitehouse' required></textarea>
           <br><br>
           <img data-rating='1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
@@ -58,15 +60,30 @@ function generateCreator() {
 };
 
 //Generates Condensed or Expanded Bookmarks depending on State of their Expanded Value
+//MOVE TO RENDER 
 function masterGenerator() {
   let masterLog = "";
-  for (let i = 0; i < library.store.libraryItems.length; i++) {
-      let quarry = library.store.libraryItems[i];
+  if(library.store.filter === 0) {
+    for (let i = 0; i < library.store.libraryItems.length; i++) {
+        let quarry = library.store.libraryItems[i];
+        if(quarry.expanded === false) {
+            masterLog += generateCondensed(quarry);
+        } else if(quarry.expanded === true) {
+            masterLog += generateExpanded(quarry);
+        };
+    };
+  } else {
+    let filter = library.store.filter;
+    let chosen = library.store.libraryItems.filter((item) => {
+      return item.rating === filter});
+    for (let i = 0; i < chosen.length; i++) {
+      let quarry = chosen[i];
       if(quarry.expanded === false) {
-          masterLog += generateCondensed(quarry);
+        masterLog += generateCondensed(quarry);
       } else if(quarry.expanded === true) {
-          masterLog += generateExpanded(quarry);
+        masterLog += generateExpanded(quarry);
       };
+     };
   };
   return masterLog;
 };
