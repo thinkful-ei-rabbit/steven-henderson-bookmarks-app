@@ -3,29 +3,28 @@ import starFilter from './starFilter';
 import starRater from './starRater';
 import renders from './renders';
 import library from './library';
-import generators from './generators';
+import store from './store';
 
 /* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
 //Opens the Creator Menu
 function openCreator() {
   $('#create').on('click', function() {
-      //document.getElementById('creator').classList.remove('hidden');
-      library.store.state = 'create';
+      store.library.state = 'creator';
       renders.updateUI();
+      validateCreator();
+      cancelCreator();
+      starRaterClick();
+      store.library.filter = 0;
   });
 };
 
 //BUILD Button creates a new Library Item
 function buildCreator() {
-  document.getElementById('creator').classList.add('hidden');
-  $('#bookmark-library').html('');
-  document.getElementById('top').classList.add('top');
-  document.getElementById('top').classList.remove('hidden');
+  $('#top').html('');
+  $('#library').html('');
+  store.library.state = 'library';
   library.addLibraryItem();
   //Update API
-  document.getElementById('creator-entry').reset();
-  starRater.starRaterDefault();
-  library.store.passing = false;
 };
 
 //But first it must pass validation
@@ -34,6 +33,7 @@ function validateCreator() {
   $('#build').on('click', validator);
 };
 
+//Function to Validate appropriate fields are filled out
 function validator(event) {
   event.preventDefault();
   const x = $('#title').val();
@@ -54,11 +54,8 @@ function validator(event) {
 function cancelCreator() {
   $('#cancel').on('click', function(event) {
       event.preventDefault();
-      document.getElementById('creator').classList.add('hidden');
-      document.getElementById('top').classList.add('top');
-      document.getElementById('top').classList.remove('hidden');
-      document.getElementById('creator-entry').reset();
-      starRater.starRaterDefault();
+      store.library.state = 'library';
+      renders.updateUI();
   });
 };
 
@@ -111,8 +108,8 @@ function expander() {
       event.preventDefault();
       let expanderParent = this.closest('.bookmark');
       let expanderTag = $(expanderParent).attr('id');
-      for (let i = 0; i < library.store.libraryItems.length; i++) {
-          let quarry = library.store.libraryItems[i];
+      for (let i = 0; i < store.library.libraryItems.length; i++) {
+          let quarry = store.library.libraryItems[i];
           if (quarry.id === expanderTag) {
               quarry.expanded = true;
           };
@@ -127,8 +124,8 @@ function condenser() {
       event.preventDefault();
       let condenserParent = this.closest('.bookmark');
       let condenserTag = $(condenserParent).attr('id');
-      for (let i = 0; i < library.store.libraryItems.length; i++) {
-          let quarry = library.store.libraryItems[i];
+      for (let i = 0; i < store.library.libraryItems.length; i++) {
+          let quarry = store.library.libraryItems[i];
           if (quarry.id === condenserTag) {
               quarry.expanded = false;
           };

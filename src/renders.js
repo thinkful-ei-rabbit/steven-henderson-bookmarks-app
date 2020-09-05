@@ -1,20 +1,32 @@
 import $ from 'jquery';
 import generators from './generators';
 import handlers from './handlers';
-import library from './library';
+import store from './store';
 
 /* RENDER FUNCTIONs */
 //Renders the initial HTML
 function renderInitial() {
   $('#root').html(generators.generateTop());
-  //$('#bookmark-library').html(generators.generateCreator());
-  handlers.validateCreator();
-  handlers.cancelCreator();
+  handlers.openCreator();
+  handlers.starFilterClick();
 };
 
+//Renders the Creator
+function renderCreator() {
+  document.getElementById('top').classList.add('hidden');
+  document.getElementById('top').classList.remove('top');
+  $('#bookmark-library').html(generators.generateCreator());
+  //Conditionally calls the Form Creator on Create Button Click
+};
+
+//Single Focus Function that determines what to render based on state of Store
 function updateUI() {
-  if(library.store.state === "create") {
-    createForm();
+  if(store.library.state === "library") {
+    renderInitial();
+    renderLibrary();
+  };
+  if(store.library.state === "creator") {
+    renderCreator();
   };
 };
 
@@ -29,11 +41,7 @@ function renderLibrary() {
   handlers.condenser();
 };
 
-function createForm() {
-  document.getElementById('top').classList.add('hidden');
-  document.getElementById('top').classList.remove('top');
-  $('#bookmark-library').html(generators.generateCreator());//Conditionally calls the Form Creator on Create Button Click
-};
+
 
 
 export default {

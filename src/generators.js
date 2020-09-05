@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import library from './library';
+import store from './store';
 
 //GENERATOR FUNCTIONS
 //Generates the top section of the page
@@ -33,15 +33,15 @@ function generateCreator() {
     <h2>Create a Bookmark</h2>
       <form id='creator-entry'>
         <label for='title'>Enter a Name</label>
-          <input id='title' type='text' name='title' placeholder='the whitehouse' isRequired>
+          <input id='title' type='text' name='title' placeholder='the whitehouse'>
           <br><br>
         <label for='url'>Enter a URL</label>
-          <input id='url' type='text' name='url' placeholder='e.g., whitehouse.gov' isRequired>
+          <input id='url' type='text' name='url' placeholder='e.g., https://whitehouse.gov'>
           <br><br>
         <label for='description'>Enter a Description</label>
           <br><br>
         <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
-          placeholder='The official website of the United States Whitehouse' required></textarea>
+          placeholder='The official website of the United States Whitehouse'></textarea>
           <br><br>
           <img data-rating='1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
           <img id='creator-star-2' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
@@ -63,9 +63,9 @@ function generateCreator() {
 //MOVE TO RENDER 
 function masterGenerator() {
   let masterLog = "";
-  if(library.store.filter === 0) {
-    for (let i = 0; i < library.store.libraryItems.length; i++) {
-        let quarry = library.store.libraryItems[i];
+  if(store.library.filter === 0) {
+    for (let i = 0; i < store.library.libraryItems.length; i++) {
+        let quarry = store.library.libraryItems[i];
         if(quarry.expanded === false) {
             masterLog += generateCondensed(quarry);
         } else if(quarry.expanded === true) {
@@ -73,8 +73,8 @@ function masterGenerator() {
         };
     };
   } else {
-    let filter = library.store.filter;
-    let chosen = library.store.libraryItems.filter((item) => {
+    let filter = store.library.filter;
+    let chosen = store.library.libraryItems.filter((item) => {
       return item.rating === filter});
     for (let i = 0; i < chosen.length; i++) {
       let quarry = chosen[i];
@@ -94,7 +94,7 @@ function generateCondensed(quarry) {
     <div id='${quarry.id}' class='condensed bookmark'>
       <div class='bookmark-left'>
         <span class='title'><h3>${quarry.title}</h3></span>
-        <span class='star-rating'><img src='${library.ratingSystem[quarry.rating]}'</span>
+        <span class='star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
       </div>
       <span class='bookmark-right'><button class='expand' class='bookmark-button' type='submit'>Expand</button></span>
     </div>
@@ -108,7 +108,7 @@ function generateExpanded(quarry) {
       <div class='bookmark-left-big'>
         <div class='bookmark-top'>
           <span class='bookmark-top-left'><h3 contenteditable= true>${quarry.title}</h3></span>
-          <span class='expanded-star-rating'><img src='${library.ratingSystem[quarry.rating]}'</span>
+          <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
         </div>
           <span class='bookmark-middle-left'><h4 contenteditable= true>${quarry.description}</h4></span>
           <span class='bookmark-bottom-left'><h5 contenteditable= true>${quarry.url}</h5></span>

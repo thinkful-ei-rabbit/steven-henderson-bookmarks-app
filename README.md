@@ -31,8 +31,8 @@ Current Technical Features:
 - Logically grouped Functions
 - Complete lack of direct DOM manipulation with event handlers
 - Utilization of jQuery for DOM manipulation
+- A 'fetch' command for AJAX calls
 
 Features in Progress:
-- A 'fetch' command for AJAX calls
 - Responsive and mobile-first design
 - Strict adherence to a11ly practices
