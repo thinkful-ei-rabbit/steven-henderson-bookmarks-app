@@ -24,22 +24,21 @@ function filterSettingZero(power) {
   const numbers = /\d+/;
   let result = power.match(numbers);
   if(result == 1) {
-    library.store.filter= 0;
+    store.library.filter= 0;
   } if(result == 2) {
-    library.store.filter= 1;
+    store.library.filter= 1;
   } if(result == 3) {
-    library.store.filter= 2;
+    store.library.filter= 2;
   } if(result == 4) {
-    library.store.filter= 3;
+    store.library.filter= 3;
   } if(result == 5) {
-    library.store.filter= 4;
+    store.library.filter= 4;
   };
 };
 
 //Adds Star Visual to Star Filter
 function starFilterAdder(power) {
   let newStar = '../stars/star.png';
-  console.log('you clicked star ' + power);
   if(power === 'top-star-1') {
   } if(power === 'top-star-2') {
       document.getElementById('top-star-1').classList.remove('dead-star');

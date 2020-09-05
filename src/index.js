@@ -1,17 +1,20 @@
 import $ from 'jquery';
-import renders from './renders';
-import handlers from './handlers';
-import './index.css';
 import api from './api';
+import store from './store';
+import library from './library';
+import renders from './renders';
+import './index.css';
+
 
 function main() {
-    renders.renderInitial();
+  api.getItems()
+  .then(res => res.json())
+  .then((items) => {
+    items.forEach((item) => library.addApi(item));
     renders.renderLibrary();
-
-  api.getItems();
-  //api.handleSubmit();
-  //api.createItem('guitar')  
-
+    console.log(store.library.libraryItems)
+  });
+  renders.renderInitial();
 };
 
 $(main);

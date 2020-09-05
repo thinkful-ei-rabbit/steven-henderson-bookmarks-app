@@ -24,7 +24,6 @@ function buildCreator() {
   $('#library').html('');
   store.library.state = 'library';
   library.addLibraryItem();
-  //Update API
 };
 
 //But first it must pass validation
@@ -114,8 +113,10 @@ function expander() {
               quarry.expanded = true;
           };
       };
-  renders.renderLibrary();
+  renders.updateUI();
   });
+  editor();
+  remover();
 };
 
 //Clicking a CONDENSE Button will CONDENSE the Bookmark
@@ -139,8 +140,20 @@ function remover() {
   $('.remove').on('click', function(event) {
       event.preventDefault();
       let removerParent = this.closest('.bookmark');
-  })
-}
+      let removerTag = $(removerParent).attr('id');
+      library.removeLibraryItem(removerTag);
+  });
+};
+
+function editor() {
+  $('.edit').on('click', function(event) {
+    event.preventDefault();
+    let editorParent = this.closest('.bookmark')
+    if (document.getElementsByClassName('.edit').classList('disabled')) {
+      document.getElementsByClassName(':button').attr('disabled', 'disabled');
+    };
+  });
+};
 
 export default {
   starFilterClick,

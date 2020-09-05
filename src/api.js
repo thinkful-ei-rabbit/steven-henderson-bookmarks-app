@@ -1,14 +1,9 @@
-import $ from 'jquery';
-import store from './store';
+import renders from "./renders";
 
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
 
 const getItems = function () {
   return fetch(`${BASE_URL}`)
-    .then(res => res.json())
-    .then((items) => {
-      items.forEach((item) => store.library.push(item));
-    });
 };
 
 const createItem = function (title, description, url, rating) {
@@ -26,7 +21,6 @@ const createItem = function (title, description, url, rating) {
     })
   })
   .then(res => {
-    console.log(res.json)
     if (res.ok) {
       return res.json();
     } else {
@@ -35,8 +29,20 @@ const createItem = function (title, description, url, rating) {
   });
 };
 
+const deleteItem = function (id) {
+  return fetch(`${BASE_URL}/` + id , {
+    method: 'delete'
+  })
+    .then(response => response.json()
+    .then(json => {
+      return json;
+    })
+  );
+};
+
 export default {
   BASE_URL,
   getItems,
   createItem,
+  deleteItem
 };

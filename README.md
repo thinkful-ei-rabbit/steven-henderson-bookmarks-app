@@ -19,9 +19,9 @@ A app that currently allows users to:
 - Edit bookmark descriptions
 - Use a Scaling Star Button System to set a Bookmark Filter
 - Receive Feedback for unsubmitable Bookmarks
+- Remove unwanted Bookmarks
 
 Stories in Progress:
-- Remove unwanted Bookmarks
 - Ability to edit Bookmark Titles, Urls, and Descriptions 
 
 
