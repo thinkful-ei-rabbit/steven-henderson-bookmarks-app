@@ -65,7 +65,7 @@ textarea {
     display: none;
 }
 
-/* Top Create Button + Star Filter Formatting */
+/* Top Create Button + Star Filter Formatting + Fetch Button */
 #create {
     width: 5rem;
     height: 2rem;
@@ -82,6 +82,11 @@ textarea {
     width: 1rem;
     height: auto;
 }
+
+#fetch {
+    
+}
+
 
 /* Library Item Formatting */
 .bookmark {

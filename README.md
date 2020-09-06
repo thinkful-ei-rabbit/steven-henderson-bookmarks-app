@@ -1,5 +1,9 @@
 BOOKMARK LIBRARY
 
+
+https://hendoe.github.io/steven-henderson-bookmarks-app/src/
+
+
 By Steven Henderson
 
 Published 08/21/2020
@@ -30,6 +34,4 @@ Current Technical Features:
 - Utilization of jQuery for DOM manipulation
 - A 'fetch' command for AJAX calls
 - Adheres to a11ly practices
-
-Features in Progress:
 - Responsive and mobile-first design
