@@ -1,29 +1,48 @@
-// function getBookmarks() {
-//     fetch('https://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks')
-//         .then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         }
-//         throw new Error(response.statusText);
-//         })
-//         .then(responseJson => displayResults(responseJson))
-//         .catch(err => {
-//         $('#js-error-message').text(`Something went wrong: ${err.message}`);
-//         });
-//         console.log(responseJson)
-// };
+import renders from "./renders";
 
-// function postBookmarks
-//     const bookmark = JSON.stringify({
-//         id: {Math.random,
-//         title: "plumbing hard",
-//         description: "chai tea bing bang wahoo plumbing all day swanging all night",
-//         url: "hffbs://itsAme.luihio",
-//         rating: 5,
-//         expanded: true,
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
 
-//     })
+const getItems = function () {
+  return fetch(`${BASE_URL}`)
+};
 
-// // function update
+const createItem = function (title, description, url, rating) {
+  return fetch(`${BASE_URL}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "title": title,
+      "desc": description,
+      "url": url,
+      "rating": rating,
+      "expanded": false
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      Promise.reject('Not Good');
+    };
+  });
+};
 
-// // function delete
+const deleteItem = function (id) {
+  return fetch(`${BASE_URL}/` + id , {
+    method: 'delete'
+  })
+    .then(response => response.json()
+    .then(json => {
+      return json;
+    })
+  );
+};
+
+export default {
+  BASE_URL,
+  getItems,
+  createItem,
+  deleteItem
+};
