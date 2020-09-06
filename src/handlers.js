@@ -149,14 +149,15 @@ function editor() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
     let editParent = this.closest('.bookmark')
-    console.log(editParent)
     let editsTitle = $(editParent).children().children().children().children('.editOff');
     let editsMain = $(editParent).children().children().children('.editOff');
     if (store.library.editMode === false) {
       store.library.editMode = true;
       $('.expand').prop('disabled', true);
       $('.condense').prop('disabled', true);
+      $('.edit').prop('disabled', true);
       $('.remove').prop('disabled', true);
+      $(this).prop('disabled', false);
       editParent.classList.add('editOn');
       $(editsTitle).attr('contenteditable', true);
       $(editsMain).attr('contenteditable', true);
@@ -165,6 +166,7 @@ function editor() {
       store.library.editMode = false;
       $('.expand').prop('disabled', false);
       $('.condense').prop('disabled', false);
+      $('.edit').prop('disabled', false);
       $('.remove').prop('disabled', false);
       editParent.classList.remove('editOn');
       $(editsTitle).attr('contenteditable', false);

@@ -27,6 +27,7 @@ function generateTop() {
 };
 
 //Generates the Creator screen
+//Single Purpose
 function generateCreator() {
   return `
   <div id='creator'>
@@ -43,7 +44,7 @@ function generateCreator() {
         <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
           placeholder='The official website of the United States Whitehouse'></textarea>
           <br><br>
-          <img data-rating='1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img data-rating='1' name='c1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
           <img id='creator-star-2' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
           <img id='creator-star-3' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
           <img id='creator-star-4' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>

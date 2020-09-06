@@ -15,6 +15,7 @@ function addLibraryItem() {
     }
     store.library.libraryItems.push(newBookmark);
     api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating);
+    //renders due to 'store' update
     renders.updateUI();
 };
 
@@ -35,6 +36,7 @@ function removeLibraryItem(id) {
 //Removes a Bookmark from the API
 function removeApi(id) {
     api.deleteItem(id);
+    //Renders due to 'store' update
     renders.updateUI();
 };
 

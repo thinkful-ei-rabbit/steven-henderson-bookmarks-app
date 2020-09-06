@@ -20,10 +20,7 @@ A app that currently allows users to:
 - Use a Scaling Star Button System to set a Bookmark Filter
 - Receive Feedback for unsubmitable Bookmarks
 - Remove unwanted Bookmarks
-
-Stories in Progress:
 - Ability to edit Bookmark Titles, Urls, and Descriptions 
-
 
 TECHNICAL FEATURES
 Current Technical Features:
@@ -32,7 +29,7 @@ Current Technical Features:
 - Complete lack of direct DOM manipulation with event handlers
 - Utilization of jQuery for DOM manipulation
 - A 'fetch' command for AJAX calls
+- Adheres to a11ly practices
 
 Features in Progress:
 - Responsive and mobile-first design
-- Strict adherence to a11ly practices
