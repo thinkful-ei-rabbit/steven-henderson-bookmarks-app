@@ -44,6 +44,7 @@ let library = {
   filter: 0,
   rating: 0,
   state: 'library',
+  editMode: false,
   ratingSystem: {
     null: '../stars/zero-of-five.png',
     0: '../stars/zero-of-five.png',

@@ -148,9 +148,27 @@ function remover() {
 function editor() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
-    let editorParent = this.closest('.bookmark')
-    if (document.getElementsByClassName('.edit').classList('disabled')) {
-      document.getElementsByClassName(':button').attr('disabled', 'disabled');
+    let editParent = this.closest('.bookmark')
+    console.log(editParent)
+    let editsTitle = $(editParent).children().children().children().children('.editOff');
+    let editsMain = $(editParent).children().children().children('.editOff');
+    if (store.library.editMode === false) {
+      store.library.editMode = true;
+      $('.expand').prop('disabled', true);
+      $('.condense').prop('disabled', true);
+      $('.remove').prop('disabled', true);
+      editParent.classList.add('editOn');
+      $(editsTitle).attr('contenteditable', true);
+      $(editsMain).attr('contenteditable', true);
+     //$(document.getElementsByClassName('.edit')).removeAttribute('disabled');
+    } else if (store.library.editMode === true) {
+      store.library.editMode = false;
+      $('.expand').prop('disabled', false);
+      $('.condense').prop('disabled', false);
+      $('.remove').prop('disabled', false);
+      editParent.classList.remove('editOn');
+      $(editsTitle).attr('contenteditable', false);
+      $(editsMain).attr('contenteditable', false);
     };
   });
 };

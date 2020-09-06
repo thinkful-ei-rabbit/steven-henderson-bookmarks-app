@@ -107,11 +107,11 @@ function generateExpanded(quarry) {
     <div id=${quarry.id} class='expanded bookmark'>
       <div class='bookmark-left-big'>
         <div class='bookmark-top'>
-          <span class='bookmark-top-left'><h3 contenteditable= true>${quarry.title}</h3></span>
+          <span class='bookmark-top-left'><h3 class='editOff' contenteditable=false>${quarry.title}</h3></span>
           <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
         </div>
-          <span class='bookmark-middle-left'><h4 contenteditable= true>${quarry.description}</h4></span>
-          <span class='bookmark-bottom-left'><h5 contenteditable= true>${quarry.url}</h5></span>
+          <span class='bookmark-middle-left'><h4 class='editOff' contenteditable=false>${quarry.description}</h4></span>
+          <span class='bookmark-bottom-left'><h5 class='editOff' contenteditable=false>${quarry.url}</h5></span>
       </div>
 
       <div class='bookmark-right-big'>
