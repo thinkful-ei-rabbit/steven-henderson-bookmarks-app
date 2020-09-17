@@ -43,8 +43,10 @@ function validator(event) {
     alert("Title must be filled out");
   } else if (y === "") {
     alert("URL must be filled out")
-  } else {
+  } else if (y.includes('http://') || y.includes('https://')) {
     buildCreator()
+  }else {
+    alert("URL must contain either http:// or https://")
   };
 }
 

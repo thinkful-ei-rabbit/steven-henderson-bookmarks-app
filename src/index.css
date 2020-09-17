@@ -83,10 +83,6 @@ textarea {
     height: auto;
 }
 
-#fetch {
-    
-}
-
 
 /* Library Item Formatting */
 .bookmark {
@@ -336,6 +332,7 @@ form > button {
         /* border-style: solid;
         border-color: blue; */
         padding: 0 0 0 1rem;
+        font-size: 16px;
     }
 
     .star-rating {
@@ -358,11 +355,10 @@ form > button {
         padding: 1rem 0 0 5rem;
     }
 
-    .expanded {
+    .bookmark-left-big {
+        display: flex;
+        flex-direction: column;
         flex: 3;
-        border-style: double;
-        border-color: black;
-        border-width: 0 0 4px 0;
         font-size: 100%;
     }
 }
