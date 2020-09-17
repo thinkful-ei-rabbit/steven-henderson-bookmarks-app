@@ -36,7 +36,8 @@ function updateUI() {
 //This Render Function is dependent on the values within the Store and replaces Content in the <Main> Tag when calling masterGenerator()
 function renderLibrary() {
   let spawn = generators.masterGenerator()
-  $('#library').html(spawn); 
+  $('#library').html(spawn);
+  debugger;
   handlers.expander();
   handlers.condenser();
 };
