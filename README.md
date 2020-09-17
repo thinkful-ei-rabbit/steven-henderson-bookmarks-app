@@ -1,7 +1,7 @@
 BOOKMARK LIBRARY
 
 
-https://hendoe.github.io/steven-henderson-bookmarks-app/dist/
+https://thinkful-ei-rabbit.github.io/steven-henderson-bookmarks-app/dist/
 
 
 By Steven Henderson
