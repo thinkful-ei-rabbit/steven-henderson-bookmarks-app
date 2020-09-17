@@ -1,9 +1,0 @@
-Wireframe 2 points OKAY
-Templates 1 point OKAY
-Expand/Condense 2 points OKAY
-Generating 2 points OKAY
-
-Button functions 3 points
-API functionality 5 points
-CSS 4 points
-Filter 3 points

@@ -1,7 +1,7 @@
 BOOKMARK LIBRARY
 
 
-https://hendoe.github.io/steven-henderson-bookmarks-app/src/
+https://hendoe.github.io/steven-henderson-bookmarks-app/dist/
 
 
 By Steven Henderson
