@@ -37,7 +37,6 @@ function updateUI() {
 function renderLibrary() {
   let spawn = generators.masterGenerator()
   $('#library').html(spawn);
-  debugger;
   handlers.expander();
   handlers.condenser();
 };
