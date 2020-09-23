@@ -6,7 +6,6 @@ import renders from './renders';
 //Adds a Bookmark to the local store for rendering
 function addLibraryItem() {
     let newBookmark = {
-        id: Math.floor(Math.random() * 10000),
         title: $('#title').val(),
         description: $('#description').val(),
         url: $('#url').val(),
@@ -16,6 +15,7 @@ function addLibraryItem() {
     store.library.libraryItems.push(newBookmark);
     api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating);
     //renders due to 'store' update
+    api.getItems();
     renders.updateUI();
 };
 

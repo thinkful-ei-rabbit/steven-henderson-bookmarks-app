@@ -37,16 +37,20 @@ function validator(event) {
   event.preventDefault();
   const x = $('#title').val();
   const y = $('#url').val();
+  const z = store.library.rating;
+  console.log(z)
   if (x === "" && y === "") {
     alert("Both the Title and the URL must be filled out");
   } else if (x === "") {
     alert("Title must be filled out");
   } else if (y === "") {
     alert("URL must be filled out")
+  } else if (z === 0) {
+      alert("Rating must not be blank");
   } else if (y.includes('http://') || y.includes('https://')) {
-    buildCreator()
-  }else {
-    alert("URL must contain either http:// or https://")
+    buildCreator();
+  } else {
+    alert("URL must contain either http:// or https://");
   };
 }
 
