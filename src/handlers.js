@@ -28,7 +28,6 @@ function openCreator() {
       validateCreator();
       cancelCreator();
       starRaterClick();
-      store.library.filter = 0;
   });
 };
 
@@ -36,6 +35,7 @@ function openCreator() {
 function buildCreator() {
   store.library.state = 'library';
   library.addLibraryItem();
+  store.library.rating = 5;
 };
 
 //But first it must pass validation
@@ -50,6 +50,7 @@ function validator(event) {
   const x = $('#title').val();
   const y = $('#url').val();
   const z = store.library.rating;
+  console.log(store.library.rating)
   if (x === "" && y === "") {
     alert("Both the Title and the URL must be filled out");
   } else if (x === "") {
@@ -81,21 +82,17 @@ function starFilterClick() {
       event.preventDefault();
       console.log(store.library.filter)
       let starPower = $(this).attr('id');
-      if (store.library.filter === 1) {
-        console.log('zoinks')
+      if (this.classList == 'star-filter dead-star') {
+          this.classList.remove('dead-star');
+          this.classList.add('star-filter','live-star');
+          let newStar = '../stars/star.png';
+          starFilter.starFilterAdder(starPower);
+          $(this).attr('src', newStar);
       } else {
-        if (this.classList == 'star-filter dead-star') {
-            this.classList.remove('dead-star');
-            this.classList.add('star-filter','live-star');
-            let newStar = '../stars/star.png';
-            starFilter.starFilterAdder(starPower);
-            $(this).attr('src', newStar);
-        } else {
           starFilter.starFilterRemover(starPower);
-        }
-      };
+      }
       renders.renderLibrary();
-    });
+  });
 };
 
 //Allows User to set a Bookmark's Star Rating
@@ -110,11 +107,7 @@ function starRaterClick() {
           starRater.starRaterAdder(starPower);
           $(this).attr('src', newStar);
       } else if (this.classList == 'star-rater live-star') {
-          this.classList.remove('live-star');
-          this.classList.add('star-rater','dead-star');
-          let newStar = '../stars/small-star-hollow.png';
-          $(this).attr('src', newStar);
-          starRater.starRaterRemover(starPower);
+        starRater.starRaterRemover(starPower);
       }
   });
 };

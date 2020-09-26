@@ -14,7 +14,6 @@ import renders from './renders';
 //Adds a Bookmark to the local store for rendering
 function addLibraryItem() {
     let newBookmark = {
-        id: 'temp',
         title: $('#title').val(),
         description: $('#description').val(),
         url: $('#url').val(),
@@ -22,13 +21,20 @@ function addLibraryItem() {
         expanded: false,
     }
     api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating);
-    addApi(newBookmark);
+    renders.removeLibrary();
+    api.getItems()
+    .then(res => res.json())
+    .then((items) => {
+      items.forEach((item) => addApi(item));
+    });
 };
 
 //Adds a Library Item to the API
 function addApi(item) {
     item.expanded = false
+    
     store.library.libraryItems.push(item);
+    console.log(store.library.libraryItems)
     renders.updateUI();
 };
 

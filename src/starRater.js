@@ -71,7 +71,6 @@ function starRaterAdder(power) {
 function starRaterRemover(power) {
   let newStar = '../stars/small-star-hollow.png';
   if(power === 'creator-star-5') {
-      console.log('All good bruh');
   } if(power === 'creator-star-4') {
       document.getElementById('creator-star-5').classList.remove('live-star');
       document.getElementById('creator-star-5').classList.add('star-rater','dead-star');

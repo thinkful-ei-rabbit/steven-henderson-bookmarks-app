@@ -2,9 +2,8 @@ import $ from 'jquery';
 import store from './store';
 
 /* STAR FILTER FUNCTIONS */
-/* 4 Functions
+/* 3 Functions
     filterSetting();
-    filterSettingZero();
     starFilterAdder();
     starFilterRemover();
 */
@@ -25,23 +24,6 @@ function filterSetting(power) {
     store.library.filter= 5;
   };
   console.log()
-};
-
-//For giving the Bookmark Library a Star Filter Rating when Stars are removed
-function filterSettingZero(power) {
-  const numbers = /\d+/;
-  let result = power.match(numbers);
-  if(result == 1) {
-    store.library.filter= 0;
-  } if(result == 2) {
-    store.library.filter= 2;
-  } if(result == 3) {
-    store.library.filter= 3;
-  } if(result == 4) {
-    store.library.filter= 4;
-  } if(result == 5) {
-    store.library.filter= 5;
-  };
 };
 
 //Adds Star Visual to Star Filter
@@ -125,7 +107,7 @@ function starFilterRemover(power) {
       $(document.getElementById('top-star-3')).attr('src', newStar);
       $(document.getElementById('top-star-2')).attr('src', newStar);
   };
-  filterSettingZero(power);
+  filterSetting(power);
 };
 
 export default {

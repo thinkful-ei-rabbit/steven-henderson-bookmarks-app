@@ -19,11 +19,11 @@ function generateTop() {
   <nav id='top' class='top'>
     <button id='create' type='submit'>Create</button>
     <div id='top-stars'>
-      <label><img id='top-star-1' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-2' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-3' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-4' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-5' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <label><img id='top-star-1' class='star-filter live-star' src='../stars/star.png'></span></label>
+      <label><img id='top-star-2' class='star-filter live-star' src='../stars/star.png'></span></label>
+      <label><img id='top-star-3' class='star-filter live-star' src='../stars/star.png'></span></label>
+      <label><img id='top-star-4' class='star-filter live-star' src='../stars/star.png'></span></label>
+      <label><img id='top-star-5' class='star-filter live-star' src='../stars/star.png'></span></label>
     </div>
   </nav>
   <section id='bookmark-library'>
@@ -51,11 +51,11 @@ function generateCreator() {
         <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
           placeholder='The official website of the United States Whitehouse'></textarea>
           <br><br>
-          <img data-rating='1' name='c1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-2' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-3' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-4' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-5' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-1' class='star-rater live-star' src='../stars/small-star.png'></span>
+          <img id='creator-star-2' class='star-rater live-star' src='../stars/small-star.png'></span>
+          <img id='creator-star-3' class='star-rater live-star' src='../stars/small-star.png'></span>
+          <img id='creator-star-4' class='star-rater live-star' src='../stars/small-star.png'></span>
+          <img id='creator-star-5' class='star-rater live-star' src='../stars/small-star.png'></span>
           <br><br>
           <div id='creator-buttons'>
             <button id='build' type='submit'>Book it!</button>

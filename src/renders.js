@@ -57,5 +57,6 @@ function removeCreator() {
 export default {
   renderInitial,
   renderLibrary,
+  removeLibrary,
   updateUI
 };
