@@ -3,26 +3,33 @@ import api from './api';
 import store from './store';
 import renders from './renders';
 
+/* LIBRARY FUNCTIONS */
+/* 4 Functions
+    addLibraryItem();
+    addApi();
+    removeLibraryItem();
+    removeApi();
+*/
+
 //Adds a Bookmark to the local store for rendering
 function addLibraryItem() {
     let newBookmark = {
+        id: 'temp',
         title: $('#title').val(),
         description: $('#description').val(),
         url: $('#url').val(),
         rating: store.library.rating,
         expanded: false,
     }
-    store.library.libraryItems.push(newBookmark);
     api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating);
-    //renders due to 'store' update
-    api.getItems();
-    renders.updateUI();
+    addApi(newBookmark);
 };
 
 //Adds a Library Item to the API
 function addApi(item) {
-    item.expanded = false;
+    item.expanded = false
     store.library.libraryItems.push(item);
+    renders.updateUI();
 };
 
 //Removes a Bookmark from the local store
@@ -36,7 +43,6 @@ function removeLibraryItem(id) {
 //Removes a Bookmark from the API
 function removeApi(id) {
     api.deleteItem(id);
-    //Renders due to 'store' update
     renders.updateUI();
 };
 

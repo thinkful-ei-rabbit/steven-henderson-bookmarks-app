@@ -1,6 +1,14 @@
 import $ from 'jquery';
 import store from './store';
 
+/* STAR FILTER FUNCTIONS */
+/* 4 Functions
+    filterSetting();
+    filterSettingZero();
+    starFilterAdder();
+    starFilterRemover();
+*/
+
 //For giving the Bookmark Library a Star Filter Rating when Stars are added
 function filterSetting(power) {
   const numbers = /\d+/;
@@ -26,13 +34,13 @@ function filterSettingZero(power) {
   if(result == 1) {
     store.library.filter= 0;
   } if(result == 2) {
-    store.library.filter= 1;
-  } if(result == 3) {
     store.library.filter= 2;
-  } if(result == 4) {
+  } if(result == 3) {
     store.library.filter= 3;
-  } if(result == 5) {
+  } if(result == 4) {
     store.library.filter= 4;
+  } if(result == 5) {
+    store.library.filter= 5;
   };
 };
 

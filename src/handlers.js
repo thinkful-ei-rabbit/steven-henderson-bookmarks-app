@@ -5,7 +5,21 @@ import renders from './renders';
 import library from './library';
 import store from './store';
 
-/* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
+/* HANDLER FUNCTIONS */
+/* 11 Functions
+    openCreator();
+    buildCreator();
+    validateCreator();
+    validator();
+    cancelCreator();
+    starFilterClick();
+    starRaterClick();
+    expander();
+    condenser();
+    remover();
+    editor();
+*/
+
 //Opens the Creator Menu
 function openCreator() {
   $('#create').on('click', function() {
@@ -20,8 +34,6 @@ function openCreator() {
 
 //BUILD Button creates a new Library Item
 function buildCreator() {
-  $('#top').html('');
-  $('#library').html('');
   store.library.state = 'library';
   library.addLibraryItem();
 };
@@ -38,7 +50,6 @@ function validator(event) {
   const x = $('#title').val();
   const y = $('#url').val();
   const z = store.library.rating;
-  console.log(z)
   if (x === "" && y === "") {
     alert("Both the Title and the URL must be filled out");
   } else if (x === "") {
@@ -68,22 +79,23 @@ function cancelCreator() {
 function starFilterClick() {
   $('.star-filter').on('click', function(event) {
       event.preventDefault();
+      console.log(store.library.filter)
       let starPower = $(this).attr('id');
-      if (this.classList == 'star-filter dead-star') {
-          this.classList.remove('dead-star');
-          this.classList.add('star-filter','live-star');
-          let newStar = '../stars/star.png';
-          starFilter.starFilterAdder(starPower);
-          $(this).attr('src', newStar);
-      } else if (this.classList == 'star-filter live-star') {
-          this.classList.remove('live-star');
-          this.classList.add('star-filter','dead-star');
-          let newStar = '../stars/star-hollow.png';
-          $(this).attr('src', newStar);
+      if (store.library.filter === 1) {
+        console.log('zoinks')
+      } else {
+        if (this.classList == 'star-filter dead-star') {
+            this.classList.remove('dead-star');
+            this.classList.add('star-filter','live-star');
+            let newStar = '../stars/star.png';
+            starFilter.starFilterAdder(starPower);
+            $(this).attr('src', newStar);
+        } else {
           starFilter.starFilterRemover(starPower);
-      }
+        }
+      };
       renders.renderLibrary();
-  });
+    });
 };
 
 //Allows User to set a Bookmark's Star Rating
@@ -115,7 +127,7 @@ function expander() {
       let expanderTag = $(expanderParent).attr('id');
       for (let i = 0; i < store.library.libraryItems.length; i++) {
           let quarry = store.library.libraryItems[i];
-          if (quarry.id === expanderTag) {
+          if (quarry.id === expanderTag || quarry.id === 'temp') {
               quarry.expanded = true;
           };
       };
@@ -146,6 +158,7 @@ function remover() {
   $('.remove').on('click', function(event) {
       event.preventDefault();
       let removerParent = this.closest('.bookmark');
+      console.log(removerParent)
       let removerTag = $(removerParent).attr('id');
       library.removeLibraryItem(removerTag);
   });
@@ -167,7 +180,6 @@ function editor() {
       editParent.classList.add('editOn');
       $(editsTitle).attr('contenteditable', true);
       $(editsMain).attr('contenteditable', true);
-     //$(document.getElementsByClassName('.edit')).removeAttribute('disabled');
     } else if (store.library.editMode === true) {
       store.library.editMode = false;
       $('.expand').prop('disabled', false);

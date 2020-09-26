@@ -1,7 +1,14 @@
 import $ from 'jquery';
 import store from './store';
 
-//GENERATOR FUNCTIONS
+/* GENERATOR FUNCTIONS */
+/*  5 Functions
+    generateTop();
+    generateCreator();
+    masterGenerator();
+    generateCondensed();
+    generateExpanded();
+*/
 //Generates the top section of the page
 //Has been updated to utilize Semantic HTML
 function generateTop() {
@@ -76,7 +83,7 @@ function masterGenerator() {
   } else {
     let filter = store.library.filter;
     let chosen = store.library.libraryItems.filter((item) => {
-      return item.rating === filter});
+      return item.rating <= filter});
     for (let i = 0; i < chosen.length; i++) {
       let quarry = chosen[i];
       if(quarry.expanded === false) {
@@ -104,7 +111,8 @@ function generateCondensed(quarry) {
 
 //CONDENSES an EXPANDED Bookmark
 function generateExpanded(quarry) {
-  return `
+  if(quarry.id === 'temp') {
+    return `
     <div id=${quarry.id} class='expanded bookmark'>
       <div class='bookmark-left-big'>
         <div class='bookmark-top'>
@@ -118,10 +126,30 @@ function generateExpanded(quarry) {
       <div class='bookmark-right-big'>
         <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
         <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
-        <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
+        <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit' disabled>Remove</button></span>
       </div>
     </div>
   `
+  } else {
+    return `
+      <div id=${quarry.id} class='expanded bookmark'>
+        <div class='bookmark-left-big'>
+          <div class='bookmark-top'>
+            <span class='bookmark-top-left'><h3 class='editOff' contenteditable=false>${quarry.title}</h3></span>
+            <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
+          </div>
+            <span class='bookmark-middle-left'><h4 class='editOff' contenteditable=false>${quarry.description}</h4></span>
+            <span class='bookmark-bottom-left'><h5 class='editOff' contenteditable=false>${quarry.url}</h5></span>
+        </div>
+
+        <div class='bookmark-right-big'>
+          <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
+          <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
+          <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
+        </div>
+      </div>
+    `
+  };
 };
 
 export default {
