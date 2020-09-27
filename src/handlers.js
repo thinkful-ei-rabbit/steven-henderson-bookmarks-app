@@ -57,8 +57,6 @@ function validator(event) {
     alert("Title must be filled out");
   } else if (y === "") {
     alert("URL must be filled out")
-  } else if (z === 0) {
-      alert("Rating must not be blank");
   } else if (y.includes('http://') || y.includes('https://')) {
     buildCreator();
   } else {
@@ -161,6 +159,8 @@ function editor() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
     let editParent = this.closest('.bookmark')
+    let editorTag = $(editParent).attr('id');
+    let editorName = $(editParent).attr('name');
     let editsTitle = $(editParent).children().children().children().children('.editOff');
     let editsMain = $(editParent).children().children().children('.editOff');
     if (store.library.editMode === false) {
@@ -183,6 +183,7 @@ function editor() {
       $(editsTitle).attr('contenteditable', false);
       $(editsMain).attr('contenteditable', false);
     };
+    library.updateLibraryItem(editorTag, editorName);
   });
 };
 

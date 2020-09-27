@@ -40,6 +40,7 @@ function renderLibrary() {
 //Removes the Library
 function removeLibrary() {
   $('#library').empty();
+  $('#library').html("");
 };
 
 //Renders the Creator
@@ -51,6 +52,7 @@ function renderCreator() {
 //Removes the Creator
 function removeCreator() {
   $('#bookmark-library').empty();
+  $('#bookmark-library').html("");
 };
 
 

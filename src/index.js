@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import api from './api';
 import library from './library';
+import store from './store';
 import renders from './renders';
 import './index.css';
 
@@ -10,13 +11,12 @@ import './index.css';
 */
 
 function main() {
-  api.getItems()
-  .then(res => res.json())
-  .then((items) => {
-    items.forEach((item) => library.addApi(item));
-  });
   renders.renderInitial();
-  renders.updateUI();
+  api.getItems()
+    .then((items) => {
+      items.forEach((item) => store.library.libraryItems.push(item));
+      renders.updateUI();
+    });
 };
 
 $(main);

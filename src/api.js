@@ -3,20 +3,42 @@ import renders from "./renders";
 const BASE_URL = 'http://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
 
 /* API FUNCTIONS */
-/* 3 Functions
+/* 5 Functions
+    listApiFetch();
     getItems();
     createItem();
+    updateItem();
     deleteItem();
 */
 
+const listApiFetch = function (...args) {
+  let error;
+  return fetch(...args)
+    .then(res => {
+      if (!res.ok) {
+        error = { code: res.status};
+        if (!res.headers.get('content-type').includes('json')) {
+          error.message = res.statusText;
+          return Promise.reject(error);
+        }
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (error) {
+        error.message = data.message;
+        return Promise.reject(error);
+      }
+      return data;
+    });
+};
 
 const getItems = function () {
-  return fetch(`${BASE_URL}`)
+  return listApiFetch(`${BASE_URL}`);
 };
 
 const createItem = function (title, description = " ", url, rating) {
-  console.log(title, description, url, rating)
-  return fetch(`${BASE_URL}`, {
+  return listApiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -27,38 +49,30 @@ const createItem = function (title, description = " ", url, rating) {
       url: url,
       rating: Number(rating),
     })
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      Promise.reject('Not Good');
-    };
+  });
+};
+
+const updateItem = function (id, updateData) {
+  const newData = JSON.stringify(updateData);
+  return listApiFetch(`${BASE_URL}/items/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: newData
   });
 };
 
 const deleteItem = function (id) {
-  if(id === "temp") {
-  getItems()
-      .then(res => res.json())
-      // .then((items) => {
-      //   items.filter()
-    //})
-  } else {
-    return fetch(`${BASE_URL}/` + id , {
+    return listApiFetch(`${BASE_URL}/` + id , {
       method: 'delete'
     })
-      .then(response => response.json()
-      .then(json => {
-        return json;
-      })
-    );
-  };
 };
 
 export default {
   BASE_URL,
   getItems,
   createItem,
+  updateItem,
   deleteItem
 };

@@ -4,11 +4,12 @@ import store from './store';
 import renders from './renders';
 
 /* LIBRARY FUNCTIONS */
-/* 4 Functions
+/* 5 Functions
     addLibraryItem();
     addApi();
     removeLibraryItem();
     removeApi();
+    updateLibraryItem();
 */
 
 //Adds a Bookmark to the local store for rendering
@@ -20,22 +21,17 @@ function addLibraryItem() {
         rating: store.library.rating,
         expanded: false,
     }
-    api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating);
-    renders.removeLibrary();
-    api.getItems()
-    .then(res => res.json())
-    .then((items) => {
-      items.forEach((item) => addApi(item));
-    });
+    addApi(newBookmark)
 };
 
-//Adds a Library Item to the API
-function addApi(item) {
-    item.expanded = false
-    
-    store.library.libraryItems.push(item);
-    console.log(store.library.libraryItems)
-    renders.updateUI();
+function addApi(newBookmark) {
+    api.createItem(newBookmark.title, newBookmark.description, newBookmark.url, newBookmark.rating)
+    .then((newItem) => {
+        newItem.expanded = false
+        store.library.libraryItems.push(newItem)
+        renders.removeLibrary()
+        renders.updateUI()
+    })
 };
 
 //Removes a Bookmark from the local store
@@ -52,9 +48,18 @@ function removeApi(id) {
     renders.updateUI();
 };
 
+function updateLibraryItem(id, itemName) { 
+      api.updateItem(id, { name: itemName })
+        .then(() => {
+          const updater = store.library.libraryItems.findById(id);
+          Object.assign(currentItem, itemName)
+          render();
+        })
+};
+
+
     export default {
-        store,
         addLibraryItem,
-        addApi,
-        removeLibraryItem
+        removeLibraryItem,
+        updateLibraryItem
     };
