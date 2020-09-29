@@ -34,7 +34,7 @@ function openCreator() {
 //BUILD Button creates a new Library Item
 function buildCreator() {
   store.library.state = 'library';
-  library.addLibraryItem();
+  library.addApi();
   store.library.rating = 5;
 };
 
@@ -159,10 +159,16 @@ function editor() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
     let editParent = this.closest('.bookmark')
-    let editorTag = $(editParent).attr('id');
-    let editorName = $(editParent).attr('name');
+    let editorTag = event.currentTarget.dataset.id;
     let editsTitle = $(editParent).children().children().children().children('.editOff');
     let editsMain = $(editParent).children().children().children('.editOff');
+    //new updated bookmark data
+    let bookmarkModel = {};
+    bookmarkModel.id = editorTag;
+    bookmarkModel.title = $('#title-' + editorTag).html();
+    bookmarkModel.desc = $('#description-' + editorTag).html();
+    bookmarkModel.url = $('#url-' + editorTag).html();
+    debugger
     if (store.library.editMode === false) {
       store.library.editMode = true;
       $('.expand').prop('disabled', true);
@@ -182,8 +188,8 @@ function editor() {
       editParent.classList.remove('editOn');
       $(editsTitle).attr('contenteditable', false);
       $(editsMain).attr('contenteditable', false);
+      library.updateLibraryItem(bookmarkModel);
     };
-    library.updateLibraryItem(editorTag, editorName);
   });
 };
 

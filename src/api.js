@@ -1,5 +1,3 @@
-import renders from "./renders";
-
 const BASE_URL = 'http://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
 
 /* API FUNCTIONS */
@@ -53,8 +51,9 @@ const createItem = function (title, description = " ", url, rating) {
 };
 
 const updateItem = function (id, updateData) {
+  debugger;
   const newData = JSON.stringify(updateData);
-  return listApiFetch(`${BASE_URL}/items/${id}`, {
+  return listApiFetch(`${BASE_URL}/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

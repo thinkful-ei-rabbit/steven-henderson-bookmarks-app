@@ -111,45 +111,24 @@ function generateCondensed(quarry) {
 
 //CONDENSES an EXPANDED Bookmark
 function generateExpanded(quarry) {
-  if(quarry.id === 'temp') {
-    return `
-    <div id=${quarry.id} class='expanded bookmark'>
-      <div class='bookmark-left-big'>
-        <div class='bookmark-top'>
-          <span class='bookmark-top-left'><h3 class='editOff' contenteditable=false>${quarry.title}</h3></span>
-          <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
-        </div>
-          <span class='bookmark-middle-left'><h4 class='editOff' contenteditable=false>${quarry.description}</h4></span>
-          <span class='bookmark-bottom-left'><h5 class='editOff' contenteditable=false>${quarry.url}</h5></span>
-      </div>
-
-      <div class='bookmark-right-big'>
-        <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
-        <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
-        <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit' disabled>Remove</button></span>
-      </div>
-    </div>
-  `
-  } else {
     return `
       <div id=${quarry.id} class='expanded bookmark'>
         <div class='bookmark-left-big'>
           <div class='bookmark-top'>
-            <span class='bookmark-top-left'><h3 class='editOff' contenteditable=false>${quarry.title}</h3></span>
+            <span class='bookmark-top-left'><h3 id=${'title-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.title}</h3></span>
             <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
           </div>
-            <span class='bookmark-middle-left'><h4 class='editOff' contenteditable=false>${quarry.description}</h4></span>
-            <span class='bookmark-bottom-left'><h5 class='editOff' contenteditable=false>${quarry.url}</h5></span>
+            <span class='bookmark-middle-left'><h4 id=${'description-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.desc}</h4></span>
+            <span class='bookmark-bottom-left'><h5 id=${'url-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.url}</h5></span>
         </div>
 
         <div class='bookmark-right-big'>
           <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
-          <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
+          <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit' data-id=${quarry.id}>Edit</button></span>
           <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
         </div>
       </div>
     `
-  };
 };
 
 export default {

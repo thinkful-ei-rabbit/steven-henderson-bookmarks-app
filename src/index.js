@@ -12,10 +12,11 @@ import './index.css';
 
 function main() {
   renders.renderInitial();
+  console.log(store.library.libraryItems)
   api.getItems()
     .then((items) => {
-      items.forEach((item) => store.library.libraryItems.push(item));
-      renders.updateUI();
+      items.expanded = false;
+      items.forEach((item) => library.addLibraryItem(item));
     });
 };
 
