@@ -1,7 +1,14 @@
 import $ from 'jquery';
 import store from './store';
 
-//GENERATOR FUNCTIONS
+/* GENERATOR FUNCTIONS */
+/*  5 Functions
+    generateTop();
+    generateCreator();
+    masterGenerator();
+    generateCondensed();
+    generateExpanded();
+*/
 //Generates the top section of the page
 //Has been updated to utilize Semantic HTML
 function generateTop() {
@@ -12,11 +19,11 @@ function generateTop() {
   <nav id='top' class='top'>
     <button id='create' type='submit'>Create</button>
     <div id='top-stars'>
-      <label><img id='top-star-1' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-2' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-3' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-4' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
-      <label><img id='top-star-5' class='star-filter dead-star' src='../stars/star-hollow.png'></span></label>
+      <img id='top-star-1' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 1"></span>
+      <img id='top-star-2' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 2"></span>
+      <img id='top-star-3' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 3"></span>
+      <img id='top-star-4' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 4"></span>
+      <img id='top-star-5' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 5"></span>
     </div>
   </nav>
   <section id='bookmark-library'>
@@ -32,7 +39,7 @@ function generateCreator() {
   return `
   <div id='creator'>
     <h2>Create a Bookmark</h2>
-      <form id='creator-entry'>
+      <section id='creator-entry'>
         <label for='title'>Enter a Name</label>
           <input id='title' type='text' name='title' placeholder='the whitehouse'>
           <br><br>
@@ -44,18 +51,18 @@ function generateCreator() {
         <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
           placeholder='The official website of the United States Whitehouse'></textarea>
           <br><br>
-          <img data-rating='1' name='c1' id='creator-star-1' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-2' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-3' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-4' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
-          <img id='creator-star-5' class='star-rater dead-star' src='../stars/small-star-hollow.png'></span>
+          <img id='creator-star-1' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 1"/></span>
+          <img id='creator-star-2' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 2"></span>
+          <img id='creator-star-3' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 3"></span>
+          <img id='creator-star-4' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 4"></span>
+          <img id='creator-star-5' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 5"></span>
           <br><br>
           <div id='creator-buttons'>
             <button id='build' type='submit'>Book it!</button>
             <div class='divider'></div>
             <button id='cancel' type='submit'>Cancel it!</button>
           </div>
-      </form>
+      </section>
   </div>
   `
 };
@@ -76,7 +83,7 @@ function masterGenerator() {
   } else {
     let filter = store.library.filter;
     let chosen = store.library.libraryItems.filter((item) => {
-      return item.rating === filter});
+      return item.rating <= filter});
     for (let i = 0; i < chosen.length; i++) {
       let quarry = chosen[i];
       if(quarry.expanded === false) {
@@ -104,24 +111,24 @@ function generateCondensed(quarry) {
 
 //CONDENSES an EXPANDED Bookmark
 function generateExpanded(quarry) {
-  return `
-    <div id=${quarry.id} class='expanded bookmark'>
-      <div class='bookmark-left-big'>
-        <div class='bookmark-top'>
-          <span class='bookmark-top-left'><h3 class='editOff' contenteditable=false>${quarry.title}</h3></span>
-          <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
+    return `
+      <div id=${quarry.id} class='expanded bookmark'>
+        <div class='bookmark-left-big'>
+          <div class='bookmark-top'>
+            <span class='bookmark-top-left'><h3 id=${'title-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.title}</h3></span>
+            <span class='expanded-star-rating'><img src='${store.library.ratingSystem[quarry.rating]}'</span>
+          </div>
+            <span class='bookmark-middle-left'><h4 id=${'description-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.desc}</h4></span>
+            <span class='bookmark-bottom-left'><h5 id=${'url-' + quarry.id} class='editOff' contenteditable=false data-id=${quarry.id}>${quarry.url}</h5></span>
         </div>
-          <span class='bookmark-middle-left'><h4 class='editOff' contenteditable=false>${quarry.description}</h4></span>
-          <span class='bookmark-bottom-left'><h5 class='editOff' contenteditable=false>${quarry.url}</h5></span>
-      </div>
 
-      <div class='bookmark-right-big'>
-        <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
-        <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit'>Edit</button></span>
-        <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
+        <div class='bookmark-right-big'>
+          <span class='bookmark-top-right'><button class='condense' class='bookmark-button' type='submit'>Condense</button></span>
+          <span class='bookmark-middle-right'><button class='edit' class='bookmark-button' type='submit' data-id=${quarry.id}>Edit</button></span>
+          <span class='bookmark-bottom-right'><button class='remove' class='bookmark-button' type='submit'>Remove</button></span>
+        </div>
       </div>
-    </div>
-  `
+    `
 };
 
 export default {

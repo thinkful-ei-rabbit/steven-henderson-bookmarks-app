@@ -8,7 +8,7 @@ By Steven Henderson
 
 Published 08/21/2020
 
-Last Update 09/04/2020
+Last Update 10/01/2020
 
 USER STORIES
 A app that currently allows users to:

@@ -1,6 +1,13 @@
 import $ from 'jquery';
 import store from './store';
 
+/* STAR RATING FUNCTIONS */
+/* 3 Functions
+    ratingSetting();
+    starRaterAdder();
+    starRaterRemover();
+*/
+
 //For giving the Bookmark Library a Star Filter Rating
 function ratingSetting(power) {
   const numbers = /\d+/;
@@ -12,7 +19,7 @@ function ratingSetting(power) {
   } if(result == 3) {
     store.library.rating= 3;
   } if(result == 4) {
-    store.libraryrating= 4;
+    store.library.rating= 4;
   } if(result == 5) {
     store.library.rating= 5;
   };
@@ -22,7 +29,6 @@ function ratingSetting(power) {
 function starRaterAdder(power) {
   let newStar = '../stars/small-star.png';
   if(power === 'creator-star-1') {
-      console.log('All good bruh');
   } if(power === 'creator-star-2') {
       document.getElementById('creator-star-1').classList.remove('dead-star');
       document.getElementById('creator-star-1').classList.add('star-rater','live-star');
@@ -65,7 +71,6 @@ function starRaterAdder(power) {
 function starRaterRemover(power) {
   let newStar = '../stars/small-star-hollow.png';
   if(power === 'creator-star-5') {
-      console.log('All good bruh');
   } if(power === 'creator-star-4') {
       document.getElementById('creator-star-5').classList.remove('live-star');
       document.getElementById('creator-star-5').classList.add('star-rater','dead-star');

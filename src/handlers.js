@@ -5,7 +5,21 @@ import renders from './renders';
 import library from './library';
 import store from './store';
 
-/* ALL HANDLERS FOR BUTTONS AND CLICKS */ 
+/* HANDLER FUNCTIONS */
+/* 11 Functions
+    openCreator();
+    buildCreator();
+    validateCreator();
+    validator();
+    cancelCreator();
+    starFilterClick();
+    starRaterClick();
+    expander();
+    condenser();
+    remover();
+    editor();
+*/
+
 //Opens the Creator Menu
 function openCreator() {
   $('#create').on('click', function() {
@@ -14,16 +28,14 @@ function openCreator() {
       validateCreator();
       cancelCreator();
       starRaterClick();
-      store.library.filter = 0;
   });
 };
 
 //BUILD Button creates a new Library Item
 function buildCreator() {
-  $('#top').html('');
-  $('#library').html('');
   store.library.state = 'library';
-  library.addLibraryItem();
+  library.addApi();
+  store.library.rating = 5;
 };
 
 //But first it must pass validation
@@ -37,6 +49,7 @@ function validator(event) {
   event.preventDefault();
   const x = $('#title').val();
   const y = $('#url').val();
+  const z = store.library.rating;
   if (x === "" && y === "") {
     alert("Both the Title and the URL must be filled out");
   } else if (x === "") {
@@ -44,9 +57,9 @@ function validator(event) {
   } else if (y === "") {
     alert("URL must be filled out")
   } else if (y.includes('http://') || y.includes('https://')) {
-    buildCreator()
-  }else {
-    alert("URL must contain either http:// or https://")
+    buildCreator();
+  } else {
+    alert("URL must contain either http:// or https://");
   };
 }
 
@@ -71,11 +84,7 @@ function starFilterClick() {
           let newStar = '../stars/star.png';
           starFilter.starFilterAdder(starPower);
           $(this).attr('src', newStar);
-      } else if (this.classList == 'star-filter live-star') {
-          this.classList.remove('live-star');
-          this.classList.add('star-filter','dead-star');
-          let newStar = '../stars/star-hollow.png';
-          $(this).attr('src', newStar);
+      } else {
           starFilter.starFilterRemover(starPower);
       }
       renders.renderLibrary();
@@ -94,11 +103,7 @@ function starRaterClick() {
           starRater.starRaterAdder(starPower);
           $(this).attr('src', newStar);
       } else if (this.classList == 'star-rater live-star') {
-          this.classList.remove('live-star');
-          this.classList.add('star-rater','dead-star');
-          let newStar = '../stars/small-star-hollow.png';
-          $(this).attr('src', newStar);
-          starRater.starRaterRemover(starPower);
+        starRater.starRaterRemover(starPower);
       }
   });
 };
@@ -111,7 +116,7 @@ function expander() {
       let expanderTag = $(expanderParent).attr('id');
       for (let i = 0; i < store.library.libraryItems.length; i++) {
           let quarry = store.library.libraryItems[i];
-          if (quarry.id === expanderTag) {
+          if (quarry.id === expanderTag || quarry.id === 'temp') {
               quarry.expanded = true;
           };
       };
@@ -151,8 +156,15 @@ function editor() {
   $('.edit').on('click', function(event) {
     event.preventDefault();
     let editParent = this.closest('.bookmark')
+    let editorTag = event.currentTarget.dataset.id;
     let editsTitle = $(editParent).children().children().children().children('.editOff');
     let editsMain = $(editParent).children().children().children('.editOff');
+    //new updated bookmark data
+    let bookmarkModel = {};
+    bookmarkModel.id = editorTag;
+    bookmarkModel.title = $('#title-' + editorTag).html();
+    bookmarkModel.desc = $('#description-' + editorTag).html();
+    bookmarkModel.url = $('#url-' + editorTag).html();
     if (store.library.editMode === false) {
       store.library.editMode = true;
       $('.expand').prop('disabled', true);
@@ -163,7 +175,6 @@ function editor() {
       editParent.classList.add('editOn');
       $(editsTitle).attr('contenteditable', true);
       $(editsMain).attr('contenteditable', true);
-     //$(document.getElementsByClassName('.edit')).removeAttribute('disabled');
     } else if (store.library.editMode === true) {
       store.library.editMode = false;
       $('.expand').prop('disabled', false);
@@ -173,6 +184,7 @@ function editor() {
       editParent.classList.remove('editOn');
       $(editsTitle).attr('contenteditable', false);
       $(editsMain).attr('contenteditable', false);
+      library.updateLibraryItem(bookmarkModel);
     };
   });
 };
