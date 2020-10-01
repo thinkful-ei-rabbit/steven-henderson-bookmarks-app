@@ -1,4 +1,4 @@
-const BASE_URL = 'http://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/steve-henderson/bookmarks';
 
 /* API FUNCTIONS */
 /* 5 Functions
