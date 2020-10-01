@@ -12,7 +12,6 @@ import './index.css';
 
 function main() {
   renders.renderInitial();
-  console.log(store.library.libraryItems)
   api.getItems()
     .then((items) => {
       items.expanded = false;

@@ -48,11 +48,14 @@ function removeApi(id) {
 };
 
 function updateLibraryItem(model) {
-    debugger;
     const data = {title: model.title, desc: model.desc, url: model.url};
+    const dataLocal = {id: model.id, title: model.title, desc: model.desc, url: model.url, rating: model.rating}
     api.updateItem(model.id, data);
+    let found = store.library.libraryItems.find(item => item.id === model.id);
+    found.title = model.title;
+    found.desc = model.desc;
+    found.url = model.url;
 };
-
 
     export default {
         addLibraryItem,

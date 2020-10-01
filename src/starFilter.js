@@ -23,7 +23,6 @@ function filterSetting(power) {
   } if(result == 5) {
     store.library.filter= 5;
   };
-  console.log()
 };
 
 //Adds Star Visual to Star Filter

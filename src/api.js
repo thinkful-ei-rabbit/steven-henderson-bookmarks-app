@@ -51,7 +51,6 @@ const createItem = function (title, description = " ", url, rating) {
 };
 
 const updateItem = function (id, updateData) {
-  debugger;
   const newData = JSON.stringify(updateData);
   return listApiFetch(`${BASE_URL}/${id}`, {
     method: 'PATCH',

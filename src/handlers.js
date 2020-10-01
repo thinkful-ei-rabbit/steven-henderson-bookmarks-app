@@ -50,7 +50,6 @@ function validator(event) {
   const x = $('#title').val();
   const y = $('#url').val();
   const z = store.library.rating;
-  console.log(store.library.rating)
   if (x === "" && y === "") {
     alert("Both the Title and the URL must be filled out");
   } else if (x === "") {
@@ -78,7 +77,6 @@ function cancelCreator() {
 function starFilterClick() {
   $('.star-filter').on('click', function(event) {
       event.preventDefault();
-      console.log(store.library.filter)
       let starPower = $(this).attr('id');
       if (this.classList == 'star-filter dead-star') {
           this.classList.remove('dead-star');
@@ -149,7 +147,6 @@ function remover() {
   $('.remove').on('click', function(event) {
       event.preventDefault();
       let removerParent = this.closest('.bookmark');
-      console.log(removerParent)
       let removerTag = $(removerParent).attr('id');
       library.removeLibraryItem(removerTag);
   });
@@ -168,7 +165,6 @@ function editor() {
     bookmarkModel.title = $('#title-' + editorTag).html();
     bookmarkModel.desc = $('#description-' + editorTag).html();
     bookmarkModel.url = $('#url-' + editorTag).html();
-    debugger
     if (store.library.editMode === false) {
       store.library.editMode = true;
       $('.expand').prop('disabled', true);

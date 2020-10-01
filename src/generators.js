@@ -19,11 +19,11 @@ function generateTop() {
   <nav id='top' class='top'>
     <button id='create' type='submit'>Create</button>
     <div id='top-stars'>
-      <label><img id='top-star-1' class='star-filter live-star' src='../stars/star.png'></span></label>
-      <label><img id='top-star-2' class='star-filter live-star' src='../stars/star.png'></span></label>
-      <label><img id='top-star-3' class='star-filter live-star' src='../stars/star.png'></span></label>
-      <label><img id='top-star-4' class='star-filter live-star' src='../stars/star.png'></span></label>
-      <label><img id='top-star-5' class='star-filter live-star' src='../stars/star.png'></span></label>
+      <img id='top-star-1' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 1"></span>
+      <img id='top-star-2' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 2"></span>
+      <img id='top-star-3' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 3"></span>
+      <img id='top-star-4' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 4"></span>
+      <img id='top-star-5' class='star-filter live-star' src='../stars/star.png' alt="Filter Star 5"></span>
     </div>
   </nav>
   <section id='bookmark-library'>
@@ -39,7 +39,7 @@ function generateCreator() {
   return `
   <div id='creator'>
     <h2>Create a Bookmark</h2>
-      <form id='creator-entry'>
+      <section id='creator-entry'>
         <label for='title'>Enter a Name</label>
           <input id='title' type='text' name='title' placeholder='the whitehouse'>
           <br><br>
@@ -51,18 +51,18 @@ function generateCreator() {
         <textarea id='description' type='message' name='description' rows='10' cols='60' maxlength="100"
           placeholder='The official website of the United States Whitehouse'></textarea>
           <br><br>
-          <img id='creator-star-1' class='star-rater live-star' src='../stars/small-star.png'></span>
-          <img id='creator-star-2' class='star-rater live-star' src='../stars/small-star.png'></span>
-          <img id='creator-star-3' class='star-rater live-star' src='../stars/small-star.png'></span>
-          <img id='creator-star-4' class='star-rater live-star' src='../stars/small-star.png'></span>
-          <img id='creator-star-5' class='star-rater live-star' src='../stars/small-star.png'></span>
+          <img id='creator-star-1' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 1"/></span>
+          <img id='creator-star-2' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 2"></span>
+          <img id='creator-star-3' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 3"></span>
+          <img id='creator-star-4' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 4"></span>
+          <img id='creator-star-5' class='star-rater live-star' src='../stars/small-star.png' alt="Filter Star 5"></span>
           <br><br>
           <div id='creator-buttons'>
             <button id='build' type='submit'>Book it!</button>
             <div class='divider'></div>
             <button id='cancel' type='submit'>Cancel it!</button>
           </div>
-      </form>
+      </section>
   </div>
   `
 };
